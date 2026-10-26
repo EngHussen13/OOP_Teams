@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OOP Course Project - Interactive Desktop Application</title>
+<style>
+:root{--b:#1d4e89;--bg:#f3f6fa;--t:#1f2933}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--t)}
+header{background:linear-gradient(135deg,#12315a,var(--b));color:#fff;padding:36px 20px}
+.w{max-width:1100px;margin:auto;padding:0 16px}header .w{padding:0}
+h1{margin:0 0 8px;font-size:2rem}h2{color:var(--b);margin-top:0;border-bottom:2px solid #dbe5f1;padding-bottom:6px}h3{color:#12315a}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin:10px 0;font-size:.95rem}
+.card{background:#fff;border-radius:10px;padding:22px;margin:18px 0;box-shadow:0 1px 4px #0001}
+nav ol{columns:2;margin:0;padding-left:22px}nav a{color:var(--b);text-decoration:none}
+.c{border-left:5px solid;padding:10px 14px;margin:12px 0;border-radius:4px}
+.m{background:#fdecea;border-color:#d32f2f}.i{background:#fff8e1;border-color:#f9a825}.r{background:#e8f4fd;border-color:#1976d2}.ok{background:#e8f5e9;border-color:#2e7d32}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{border:1px solid #cfd8e3;padding:7px 9px;text-align:left;vertical-align:top}th{background:#e3ebf6}
+tr:nth-child(even) td{background:#fafcff}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:7px;border:1px solid #9aa9bb;border-radius:5px;font:inherit}
+button{background:var(--b);color:#fff;border:0;padding:9px 16px;border-radius:6px;cursor:pointer;font:inherit;margin:6px 6px 6px 0}
+button.s{background:#5b6b7e}button.g{background:#2e7d32}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;color:#fff}
+.Easy{background:#2e7d32}.Medium{background:#ef6c00}.Hard{background:#c62828}
+#err{color:#c62828;font-weight:600;white-space:pre-line}
+footer{text-align:center;padding:24px;color:#52606d;font-size:.9rem}
+@media(max-width:700px){nav ol{columns:1}h1{font-size:1.5rem}}
+html{scroll-behavior:smooth}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{background:radial-gradient(circle at 8% 0,#d6e6ff 0,transparent 40%),radial-gradient(circle at 100% 35%,#e8e0ff 0,transparent 35%),var(--bg);background-attachment:fixed}header{position:relative;overflow:hidden;padding:56px 20px 92px;background:linear-gradient(120deg,#0f2a54,#1d4e89,#5b3fa3,#1d4e89);background-size:300% 300%;animation:flow 14s ease infinite}header::before,header::after{content:'';position:absolute;border-radius:50%;background:#ffffff14}header::before{width:340px;height:340px;right:-80px;top:-120px}header::after{width:200px;height:200px;left:-60px;bottom:-90px}header .w{position:relative;z-index:1}h1{font-size:2.4rem;line-height:1.15;letter-spacing:-.5px}.meta span{background:#ffffff24;padding:4px 12px;border-radius:20px}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.pills span{background:#fff;color:#12315a;font-weight:700;padding:7px 16px;border-radius:30px;box-shadow:0 4px 12px #0003}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:-54px 0 6px;position:relative;z-index:2}.stats div{background:#fff;border-radius:14px;padding:16px;text-align:center;box-shadow:0 8px 24px #1d4e8933;border-top:4px solid #1d4e89}.stats div:nth-child(2){border-color:#7b4fd1}.stats div:nth-child(3){border-color:#ef6c00}.stats div:nth-child(4){border-color:#2e7d32}.stats b{display:block;font-size:2rem;color:#1d4e89;line-height:1.1}.stats span{font-size:.85rem;color:#52606d}.card{border-radius:16px;border:1px solid #e3ebf6;box-shadow:0 4px 18px #1d4e8914;transition:transform .25s,box-shadow .25s;animation:up .6s both}.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px #1d4e8924}section:target{outline:3px solid #7fb2ff;outline-offset:3px}h2{display:flex;align-items:center;gap:12px;border:0;padding-bottom:0}h2::after{content:'';flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,#1d4e89,transparent)}nav ol{columns:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px;padding:0;list-style:none;counter-reset:n 1}nav li{counter-increment:n}nav a{display:block;background:#eef4fc;border-radius:10px;padding:8px 12px;font-weight:600;transition:.2s}nav a::before{content:counter(n) '. ';opacity:.6}nav a:hover{background:#1d4e89;color:#fff;transform:translateX(4px)}.c{position:relative;padding:12px 14px 12px 50px;border-radius:10px;border-left-width:6px}.c::before{position:absolute;left:14px;top:10px;font-size:1.25rem}.m::before{content:'⚠️'}.i::before{content:'💡'}.r::before{content:'📌'}.ok::before{content:'✅'}th{background:linear-gradient(#eaf1fb,#dbe7f6);color:#12315a}tbody tr:hover td{background:#eef5ff}button{background:linear-gradient(135deg,#1d4e89,#3b7ddd);box-shadow:0 3px 8px #1d4e8940;font-weight:600;transition:.2s}button:hover{transform:translateY(-2px);box-shadow:0 6px 14px #1d4e8955}button.s{background:linear-gradient(135deg,#5b6b7e,#7d8ca0)}button.g{background:linear-gradient(135deg,#2e7d32,#52b155)}input:focus,select:focus,textarea:focus{outline:3px solid #7fb2ff66;border-color:#1d4e89}form{background:#f7faff;border:1px dashed #b6c8e0;border-radius:14px;padding:4px 18px 16px}.four{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.four li{border-radius:14px;padding:14px;border-top:5px solid var(--a);background:#f7faff;transition:.25s}.four li:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 8px 18px #0002}.four li::before{display:block;font-size:2rem;margin-bottom:4px}.four li:nth-child(1){--a:#1d4e89}.four li:nth-child(1)::before{content:'🔒'}.four li:nth-child(2){--a:#2e7d32}.four li:nth-child(2)::before{content:'🧬'}.four li:nth-child(3){--a:#ef6c00}.four li:nth-child(3)::before{content:'🎭'}.four li:nth-child(4){--a:#7b4fd1}.four li:nth-child(4)::before{content:'🔀'}#ideas,#ideas tbody{display:block}#ideas thead{display:none}#ideas tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}#ideas tr{display:block;position:relative;background:#fff;border:1px solid #dbe5f1;border-top:5px solid #7b4fd1;border-radius:14px;padding:14px 16px;transition:.25s}#ideas tr:hover{transform:translateY(-5px);box-shadow:0 12px 26px #1d4e8930}#ideas td{display:block;border:0;padding:3px 0;background:none}#ideas td:nth-child(1){position:absolute;top:10px;right:14px;font-weight:800;font-size:1.7rem;color:#cfd8e3}#ideas td:nth-child(2)::before{content:var(--e);display:block;font-size:2.3rem}#ideas td:nth-child(n+3)::before{display:block;font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#7b4fd1;margin-top:6px}#ideas td:nth-child(3)::before{content:'OOP concepts'}#ideas td:nth-child(4)::before{content:'Class hierarchy'}#ideas td:nth-child(5)::before{content:'GUI features'}#ideas td:nth-child(6)::before{content:'Level'}#ideas tr:nth-child(1){--e:'📚'}#ideas tr:nth-child(2){--e:'🎓'}#ideas tr:nth-child(3){--e:'🏦'}#ideas tr:nth-child(4){--e:'🏥'}#ideas tr:nth-child(5){--e:'🛒'}#ideas tr:nth-child(6){--e:'🚗'}#ideas tr:nth-child(7){--e:'🏨'}#ideas tr:nth-child(8){--e:'📦'}#ideas tr:nth-child(9){--e:'🗓️'}#ideas tr:nth-child(10){--e:'🏠'}.tag{padding:2px 12px;font-weight:700}#s14 td:nth-child(2){background:linear-gradient(90deg,rgba(29,78,137,.25) var(--w,0%),transparent var(--w,0%));font-weight:700}#s14 tr:nth-child(2){--w:100%}#s14 tr:nth-child(3){--w:67%}#s14 tr:nth-child(4){--w:50%}#s14 tr:nth-child(5),#s14 tr:nth-child(6),#s14 tr:nth-child(7){--w:33%}#s14 tr:nth-child(8){--w:17%}#s13 table,#s13 tbody,#s13 tr,#s13 td{display:block}#s13 tr:first-child{display:none}#s13 tr{position:relative;margin-left:10px;padding:0 0 18px 28px;border-left:3px solid #bcd7f5}#s13 tr::before{content:'';position:absolute;left:-11px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid #1d4e89}#s13 td{border:0;padding:0;background:none}#s13 td:first-child{font-weight:700;color:var(--b)}#s17 p{background:#f6f9fd;border-left:4px solid var(--b);border-radius:8px;padding:10px 14px}#s17 p b{display:block;color:#12315a}footer{background:#12315a;color:#dbe5f1;margin-top:30px}.cap{display:inline-block;margin-top:6px;padding:2px 10px;border-radius:12px;font-size:.78rem;font-weight:700;background:#e3f2e5;color:#1b5e20}.cap.full{background:#fdecea;color:#b71c1c}.card{padding:26px;margin:22px 0}h2{font-size:1.45rem;line-height:1.25}h2::before{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#e3ebf6,#efe6ff);font-size:1.3rem}nav h2::before{content:'🧭'}#s2 h2::before{content:'🎯'}#s3 h2::before{content:'🎓'}#s4 h2::before{content:'💡'}#s5 h2::before{content:'📝'}#s6 h2::before{content:'📊'}#s8 h2::before{content:'⚙️'}#s9 h2::before{content:'🖥️'}#s11 h2::before{content:'📦'}#s12 h2::before{content:'📐'}#s14 h2::before{content:'🏆'}#s15 h2::before{content:'📅'}#s16 h2::before{content:'⚖️'}h3{font-size:1.1rem;border-left:4px solid #7b4fd1;padding-left:10px;margin:22px 0 10px}.c{margin:14px 0}table{border-collapse:separate;border-spacing:0;border:1px solid #cfd8e3;border-radius:12px;overflow:hidden;margin:10px 0}th,td{border:0;border-bottom:1px solid #e3ebf6}tr:last-child>th,tr:last-child>td{border-bottom:0}th{font-weight:700}#ideas{border:0;border-radius:0;overflow:visible}input,select,textarea{background:#fff;color:inherit;border-radius:8px}label{font-size:.95rem}button{padding:10px 18px;border-radius:10px}td button{padding:4px 12px;font-size:.8rem;margin:0}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7fb2ff;outline-offset:2px}section.card ul:not(.four){list-style:none;padding-left:4px}section.card ul:not(.four)>li{position:relative;padding-left:26px;margin:7px 0}section.card ul:not(.four)>li::before{content:'\2713';position:absolute;left:0;color:#2e7d32;font-weight:800}#s5>ol{list-style:none;padding:0}#s5>ol>li{background:#f6f9fd;border-left:5px solid var(--b);border-radius:10px;padding:10px 14px;margin:8px 0}#s6 ol{list-style:none;padding:0;counter-reset:st}#s6 ol>li{counter-increment:st;position:relative;padding-left:42px;margin:12px 0}#s6 ol>li::before{content:counter(st);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem}footer{background:linear-gradient(120deg,#0f2a54,#1d4e89);padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}.top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;text-decoration:none;font-weight:800;box-shadow:0 6px 16px #0004;z-index:20;transition:.2s}.top:hover{transform:translateY(-3px)}@media(prefers-color-scheme:dark){table{border-color:#2a3a50}th,td{border-color:#2a3a50}h2::before{background:#22324a}#s5>ol>li{background:#1b2a3d}h3{border-color:#9b7be8}}@media(max-width:700px){.card{padding:18px}h2{font-size:1.2rem}h2::before{width:36px;height:36px}}@keyframes flow{50%{background-position:100% 50%}}@keyframes up{from{opacity:0;transform:translateY(16px)}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}@media(prefers-color-scheme:dark){:root{--bg:#0f1722;--t:#e6edf5}body{background:#0f1722}.card,.stats div,#ideas tr,.four li,form{background:#17212f;border-color:#2a3a50}th{background:#22324a;color:#cfe0f5}td,tr:nth-child(even) td{background:transparent;border-color:#2a3a50}#ideas td{background:none}h2,h3,.stats b,#s17 p b,#s13 td:first-child{color:#8ec0ff}#s17 p{background:#1b2a3d}nav a{background:#1f2c40;color:#cfe0f5}input,select,textarea{background:#0f1722;color:#e6edf5;border-color:#3a4c66}.m{background:#3a1b1b}.i{background:#3a3218}.r{background:#16314a}.ok{background:#173a1f}.stats span{color:#9fb0c3}#ideas td:nth-child(1){color:#33445c}#s13 tr::before{background:#0f1722}#s13 tr{border-color:#2f4a6e}}@media(max-width:700px){h1{font-size:1.7rem}header{padding-top:36px}}</style></head><body>
+<header><div class="w">
+<p style="margin:0;opacity:.85">Course: Object-Oriented Programming</p>
+<h1>CampusConnect: Design and Build a Desktop Management System</h1>
+<div class="meta"><span><b>Semester / Year:</b> Fall / 2026</span><span><b>Instructors:</b> Dr. Mona Shoman, Eng. Hussen, Eng. Hagar, Eng. Mohamed</span><span><b>Project Weight:</b> 10% of the final course grade</span><span><b>Team Size:</b> 7-10 students</span></div>
+<p>In this team project you will design and implement a complete desktop application with a graphical interface, modelling a real-world system as a set of cooperating classes. The project focuses on four core OOP concepts: <b>encapsulation, inheritance, abstraction and polymorphism</b>. Design patterns are not part of this project and must not be used as a grading target.</p>
+<div class='pills'><span>🔒 Encapsulation</span><span>🧬 Inheritance</span><span>🎭 Abstraction</span><span>🔀 Polymorphism</span></div></div></header>
+<div class="w">
+<div class='stats'><div><b>10%</b><span>of course grade</span></div><div><b>7-10</b><span>students per team</span></div><div><b>10</b><span>project ideas</span></div><div><b>2</b><span>final deliverables</span></div></div><nav class="card"><h2>Table of Contents</h2><ol>
+<li><a href="#s2">Overview &amp; Motivation</a></li><li><a href="#s3">Learning Objectives</a></li><li><a href="#s4">Suggested Project Ideas</a></li><li><a href="#s5">Team &amp; Idea Submission</a></li><li><a href="#s6">Instructor Excel Tracking Sheet</a></li><li><a href="#s8">Technical Requirements</a></li><li><a href="#s9">GUI Requirement</a></li><li><a href="#s11">Deliverables</a></li><li><a href="#s12">UML &amp; Design Documentation</a></li><li><a href="#s14">Grading Rubric</a></li><li><a href="#s15">Submission Rules</a></li><li><a href="#s16">Academic Integrity</a></li></ol></nav>
+
+<section class="card" id="s2"><h2>2. Project Overview &amp; Motivation</h2>
+<p><b>What it is about:</b> each team chooses (or proposes) a real-world system such as a library, a hospital or a bank, and builds a desktop application that models it using well-designed classes and a graphical interface.</p>
+<p><b>Why it matters:</b> almost all professional software is built from objects that hide their data, share behaviour through hierarchies and can be extended without rewriting existing code. Learning to model a problem as objects is the most transferable skill in this course, and working in a large team mirrors real software projects.</p>
+<p><b>Connection to OOP concepts (the four graded concepts):</b></p>
+<ul class="four"><li><b>Encapsulation:</b> private fields, public getters/setters with validation, and no direct access to internal state.</li>
+<li><b>Inheritance:</b> a base class and at least two levels of specialised subclasses that reuse and extend behaviour.</li>
+<li><b>Abstraction:</b> abstract classes and/or interfaces that define what an object does while hiding how it does it.</li>
+<li><b>Polymorphism:</b> overriding methods and calling them through base-class references so that one call behaves differently per object type (plus overloading where useful).</li></ul></section>
+
+<section class="card" id="s3"><h2>3. Learning Objectives</h2><p>By the end of the project you will be able to:</p><ul>
+<li>Analyse a problem statement and identify classes, attributes, behaviours and relationships.</li>
+<li>Apply <b>encapsulation</b> to protect object state and validate data.</li>
+<li>Build an <b>inheritance</b> hierarchy that avoids duplicated code.</li>
+<li>Use <b>abstraction</b> (abstract classes and interfaces) to separate specification from implementation.</li>
+<li>Demonstrate <b>polymorphism</b> through overriding and base-type references.</li>
+<li>Draw UML class diagrams that match your implementation.</li>
+<li>Connect a graphical interface to an object model.</li>
+<li>Work in a team using version control, defined roles and a shared design.</li></ul></section>
+
+<section class="card" id="s4"><h2>4. Suggested Project Ideas</h2>
+<div class="c r"><b>Required:</b> choose one idea below, or propose your own (see Section 5). Every idea must use only encapsulation, inheritance, abstraction and polymorphism; no design patterns are required.</div>
+<div class="tw"><table id="ideas"><thead><tr><th>#</th><th>Idea &amp; Description</th><th>Key OOP Concepts</th><th>Suggested Class Hierarchy</th><th>Suggested GUI Features</th><th>Level</th></tr></thead><tbody>
+<tr><td>1</td><td><b>Library Management System</b><br>Manage books, DVDs and magazines, members, borrowing and returns. Calculates fines depending on the item type.</td><td>Encapsulation of item state; abstraction via abstract LibraryItem; polymorphic fine calculation</td><td>LibraryItem &rarr; Book, DVD, Magazine; Member &rarr; Student, Staff</td><td>Search bar, borrow/return forms, overdue table</td><td><span class="tag Easy">Easy</span></td></tr>
+<tr><td>2</td><td><b>Student Information System</b><br>Store students, instructors and courses with grades. Computes GPA and reports per person type.</td><td>Inheritance (Person base class); encapsulated grades; polymorphic getDetails()</td><td>Person &rarr; Student, Instructor, TA</td><td>Tabbed forms, grade-entry grid, report window</td><td><span class="tag Easy">Easy</span></td></tr>
+<tr><td>3</td><td><b>Banking &amp; ATM Simulator</b><br>Simulate customers with several account types, deposits, withdrawals and transfers. Each account type applies its own rules.</td><td>Encapsulated balance; abstract Account; polymorphic withdraw()/interest</td><td>Account &rarr; Savings, Current, Fixed; Transaction hierarchy</td><td>Login screen, ATM keypad panel, statement table</td><td><span class="tag Easy">Easy</span></td></tr>
+<tr><td>4</td><td><b>Hospital Appointment Manager</b><br>Register patients and doctors and schedule appointments. Billing differs by specialty and visit type.</td><td>Inheritance of staff roles; abstraction of billing; polymorphism in bill calculation</td><td>Person &rarr; Patient, Doctor, Nurse; Appointment &rarr; Checkup, Surgery</td><td>Calendar view, booking form, patient record panel</td><td><span class="tag Medium">Medium</span></td></tr>
+<tr><td>5</td><td><b>Online Shopping Cart</b><br>Browse a catalogue, fill a cart and check out. Discounts and taxes depend on the product category.</td><td>Encapsulated cart state; abstract Product; polymorphic price()/discount()</td><td>Product &rarr; Electronics, Clothing, Grocery; Payment &rarr; Card, Cash</td><td>Product grid, cart panel, checkout dialog</td><td><span class="tag Medium">Medium</span></td></tr>
+<tr><td>6</td><td><b>Vehicle Rental System</b><br>Rent cars, bikes and trucks to customers with daily rates, availability and return inspection.</td><td>Inheritance from Vehicle; interface Rentable; polymorphic cost calculation</td><td>Vehicle &rarr; Car, Bike, Truck; Customer &rarr; Regular, Premium</td><td>Availability table, rental form, invoice preview</td><td><span class="tag Medium">Medium</span></td></tr>
+<tr><td>7</td><td><b>Hotel Reservation System</b><br>Manage rooms, guests and bookings with room-specific pricing and services.</td><td>Abstract Room; encapsulated booking dates; polymorphic price()</td><td>Room &rarr; Single, Double, Suite; Guest &rarr; Regular, VIP</td><td>Room map, booking wizard, check-in/out screen</td><td><span class="tag Medium">Medium</span></td></tr>
+<tr><td>8</td><td><b>Inventory &amp; Warehouse Manager</b><br>Track stock, suppliers and orders, with low-stock alerts and category-specific storage rules.</td><td>Encapsulated quantities; abstract Item; polymorphic storage/expiry checks</td><td>Item &rarr; Perishable, Fragile, Standard; Order &rarr; Purchase, Sales</td><td>Stock table with filters, order form, alert panel</td><td><span class="tag Medium">Medium</span></td></tr>
+<tr><td>9</td><td><b>University Course Registration</b><br>Let students enrol in courses with prerequisites, capacity limits and credit-hour rules by program.</td><td>Multi-level inheritance; interfaces for Enrollable; polymorphic rule checks</td><td>Course &rarr; Lecture, Lab, Seminar; User &rarr; Student, Advisor, Admin</td><td>Course browser, timetable grid, enrolment dialog</td><td><span class="tag Hard">Hard</span></td></tr>
+<tr><td>10</td><td><b>Smart Home Controller Simulator</b><br>Simulate lights, thermostats, cameras and locks controlled from one dashboard, each reacting to commands in its own way.</td><td>Interface Controllable; abstract Device; polymorphic turnOn()/status()</td><td>Device &rarr; Light, Thermostat, Camera, Lock; Room containing devices</td><td>Dashboard with toggle buttons, sliders, status log</td><td><span class="tag Hard">Hard</span></td></tr>
+</tbody></table></div>
+<div class="c i">Students may also propose their own idea (see Section 5). Each suggested idea accepts at most 3 teams; the cards show how many spots are left.</div></section>
+
+<section class="card" id="s5"><h2>5. Team &amp; Idea Submission Process</h2>
+<div class="c m"><b>Mandatory:</b> this is an early graded checkpoint. It is separate from the two final deliverables.</div>
+<ol><li><b>Step 1:</b> Form a team of 7-10 students.</li><li><b>Step 2:</b> Choose a unique team name.</li>
+<li><b>Step 3:</b> Either (a) select one of the ideas in Section 4, or (b) submit a written proposal for a new idea.</li>
+<li><b>Step 4:</b> Submit all members (full names, student IDs and roles) and the chosen/proposed idea using the form below, then send the downloaded file to the instructor.</li></ol>
+<h3>Proposal Template (for option b)</h3>
+<table><tr><th>Title</th><td>A short, descriptive name for your system.</td></tr><tr><th>Description</th><td>3-5 sentences on what the system does and who uses it.</td></tr><tr><th>OOP Concepts</th><td>Where encapsulation, inheritance, abstraction and polymorphism appear (name the classes).</td></tr><tr><th>Features</th><td>Main features and the GUI screens.</td></tr><tr><th>Why Suitable</th><td>Why it is neither too small nor too large for a team of 7-10 in the available time.</td></tr></table>
+<h3>Team &amp; Idea Submission Form</h3><div class='c i' id='st'>Connecting to the shared course sheet...</div>
+<form id="f" onsubmit="return sub(event)" novalidate>
+<label for="tn">Team Name *</label><input id="tn" required>
+<label for="idea">Selected Idea *</label><select id="idea" onchange="tog()"><option value="">-- choose an idea --</option></select>
+<div id="pw" hidden><label for="pt">Proposed Idea Title</label><input id="pt">
+<label for="pd">New Idea Proposal</label><textarea id="pd" rows="5" placeholder="Title, description, OOP concepts, features, why it is suitable"></textarea></div>
+<p class="c i" style="margin-top:8px">New Idea Proposal: required only if "Other - Propose a New Idea" is selected.</p>
+<label>Team Members * (7 to 10 members)</label>
+<div class="tw"><table><thead><tr><th>#</th><th>Full Name</th><th>Student ID</th><th>Role</th><th>Clear</th></tr></thead><tbody id="mb"></tbody></table></div>
+<button type="button" class="s" onclick="addM()">Add Member</button><button type="button" class="s" onclick="remM()">Remove Member</button>
+<p id="err"></p><button type="submit" class="g">Submit Team &amp; Idea</button></form>
+<div class="c ok"><b>Limit &amp; saving:</b> each suggested idea can be chosen by <b>at most 3 teams</b> (first come, first served); custom proposals are not limited. When you press Submit, your team is saved automatically to the shared course sheet and a copy of your file is offered for download. Each team submits once (contact an instructor to change a submission), and only the instructors can see all member details.</div>
+<h3>Submissions Log (all teams)</h3>
+<div class="tw"><table><thead><tr><th>Team Name</th><th>Members</th><th>Chosen Idea</th><th>Proposal Title</th><th>Status</th></tr></thead><tbody id="log"><tr><td colspan="5">No submissions yet.</td></tr></tbody></table></div>
+<button type="button" id="dla" onclick="dlMine()">Download My Team's File</button><button type="button" class="g" onclick="dlInst()">Instructors: Download All Teams (Excel)</button><button type="button" class="s" id="dsh" hidden onclick="window.open(SHEET_URL,'_blank')">Open Master Google Sheet</button>
+<p><small>This log is shared and refreshes automatically for everyone. The instructors download ONE master Excel file with all teams (an instructor key is required).</small></p></section>
+
+<section class="card" id="s6"><h2>6. Instructor Side: Excel Tracking Sheet</h2>
+<div class="c r"><b>Required:</b> the instructor keeps ONE master sheet with exactly the columns below.</div>
+<div class="tw"><table><thead id="th"></thead><tbody><tr><td>Example Team</td><td colspan="30"><i>Member 1 to Member 10 (name, ID, role)</i></td><td>Library Management System</td><td></td><td></td><td>[Date]</td><td>Pending</td><td></td></tr></tbody></table></div>
+<button type="button" class="g" onclick="dl('Master_Template.csv',H.map(q).join(','))">Download CSV Template</button>
+<h3>Instructions for the Instructor</h3><ol>
+<li>Every submission is saved automatically to a shared sheet when a team presses Submit, so no files need to be emailed.</li>
+<li>Press <b>Instructors: Download All Teams</b> in Section 5 and enter the instructor key (or open the master Google Sheet and use File &gt; Download &gt; Microsoft Excel) to get ONE file with every team in the master-sheet format.</li>
+<li>Set Status to Pending, Approved or Needs Revision, and use Notes for feedback.</li><li>Keep the instructor key private; student names and IDs are stored only in your Google Sheet.</li></ol>
+<p><b>Recommended practices:</b> keep one sheet per section plus a combined master sheet; check that team names are unique; check that no student ID appears in two teams; keep a backup copy before every merge.</p></section>
+
+<section class="card" id="s8"><h2>7. Technical Requirements</h2>
+<div class="c m"><b>Mandatory:</b> language to be confirmed by the instructor (Java, C++, C# or Python).</div><ul>
+<li><b>Encapsulation:</b> all attributes private/protected, accessed through methods that validate input.</li>
+<li><b>Inheritance:</b> at least one hierarchy with a base class and two or more subclasses (ideally two levels).</li>
+<li><b>Abstraction:</b> at least one abstract class and/or interface with abstract methods implemented by subclasses.</li>
+<li><b>Polymorphism:</b> overridden methods called through base-class or interface references, demonstrated visibly in the GUI.</li>
+<li>Meaningful class, method and variable names, with comments or Javadoc (or equivalent) on every class and public method.</li>
+<li>The code must compile and run without errors, and include a README with build and run instructions.</li></ul>
+<div class="c i"><b>Important:</b> design patterns (Factory, Singleton, Observer, Strategy, etc.) are not required and will not earn marks. Focus on clean use of the four concepts above.</div></section>
+
+<section class="card" id="s9"><h2>8. GUI Requirement</h2>
+<div class="c m"><b>Mandatory:</b> the application MUST have a graphical user interface. Console-only submissions will not be accepted.</div>
+<table><tr><th>Language</th><th>Acceptable Toolkits</th></tr><tr><td>Java</td><td>JavaFX, Swing</td></tr><tr><td>C++</td><td>Qt</td></tr><tr><td>C#</td><td>WPF, WinForms</td></tr><tr><td>Python</td><td>Tkinter, PyQt</td></tr></table>
+<p>The GUI must be usable and include input forms, buttons, menus and a clear display of results (tables, lists or labels). Errors must be shown to the user in dialogs or messages.</p></section>
+
+<section class="card" id="s11"><h2>9. Deliverables</h2>
+<div class="c m"><b>Mandatory:</b> exactly two final deliverables.</div>
+<h3>Deliverable 1: PowerPoint Presentation (PPT/PPTX)</h3>
+<p>Time limit: 10-15 minutes. Contents: problem statement, design and UML, demo screenshots, how each of the four OOP concepts is used (with class names), challenges, team roles, conclusion.</p>
+<h3>Deliverable 2: Source Code (ZIP)</h3>
+<p>The ZIP must contain: all source files, a README with build/run instructions, UML diagrams, sample data (if any) and a <code>CONTRIBUTIONS.md</code> file listing what each member did.</p>
+<p><b>Naming:</b> <code>TeamName_ProjectName_Presentation.pptx</code> and <code>TeamName_ProjectName_Code.zip</code></p>
+<div class="c i">The Team &amp; Idea Submission (Section 5) is a separate, earlier checkpoint and is not one of the two final deliverables.</div></section>
+
+<section class="card" id="s12"><h2>10. UML &amp; Design Documentation</h2>
+<p>A <b>UML class diagram</b> is required: it must show all classes, attributes, methods, access modifiers, inheritance, interfaces/abstract classes and associations. A use-case or sequence diagram is optional but encouraged. The diagrams must be included in both the presentation and the code ZIP and must match the final code.</p></section>
+
+<section class="card" id="s14"><h2>11. Grading Rubric</h2>
+<p>The project is worth <b>10% of the final course grade</b>. Weights below are out of 100% of the project mark.</p>
+<div class="tw"><table><tr><th>Criterion</th><th>Weight (project)</th><th>Points in course grade</th></tr>
+<tr><td>OOP design: encapsulation, inheritance, abstraction, polymorphism</td><td>30%</td><td>3.0</td></tr>
+<tr><td>Functionality</td><td>20%</td><td>2.0</td></tr>
+<tr><td>GUI</td><td>15%</td><td>1.5</td></tr>
+<tr><td>UML &amp; documentation</td><td>10%</td><td>1.0</td></tr>
+<tr><td>Presentation</td><td>10%</td><td>1.0</td></tr>
+<tr><td>Teamwork &amp; individual contribution</td><td>10%</td><td>1.0</td></tr>
+<tr><td>Team &amp; Idea Submission checkpoint</td><td>5%</td><td>0.5</td></tr>
+<tr><th>Total</th><th>100%</th><th>10.0</th></tr></table></div></section>
+
+<section class="card" id="s15"><h2>12. Submission Rules</h2><ul>
+<li><b>Team &amp; Idea Submission deadline:</b> [Date]. <b>Final deliverables deadline:</b> [Date, Time].</li>
+<li><b>Platform:</b> [Course portal / email].</li>
+<li><b>Late policy:</b> a deduction of [X]% per day late; submissions later than [N] days are not accepted.</li>
+<li>Both deliverables are required for a passing grade on the project.</li>
+<li>Follow the naming convention in Section 9 exactly.</li></ul></section>
+
+<section class="card" id="s16"><h2>13. Academic Integrity &amp; Policies</h2><ul>
+<li><b>Plagiarism:</b> copying code from other teams, students or the internet without citation is prohibited and will be reported.</li>
+<li><b>AI usage:</b> [Instructor to specify: allowed / allowed with disclosure / not allowed]. You must be able to explain every line you submit.</li>
+<li><b>Collaboration between teams:</b> discussing general ideas is fine; sharing or reusing code between teams is not.</li></ul></section>
+
+</div>
+<a class='top' href='#' aria-label='Back to top'>↑</a><footer><p>Instructors: Dr. Mona Shoman, Eng. Hussen, Eng. Hagar, Eng. Mohamed | Email: [instructor email] | Office hours: [days and times]</p>
+<p>The instructor reserves the right to update this document. Students will be notified of any changes.</p></footer>
+
+<script>
+const API="PASTE_WEB_APP_URL_HERE";   /* paste the Apps Script Web App URL here (see setup steps) */
+const SHEET_URL="";                    /* optional: link to the master Google Sheet, shown as a button */
+const ROLES=["Team Lead","GUI Developer","Core Logic Developer","Data/File Handler","Tester/QA","Documentation Lead","Integration Lead","Presenter"];
+const $=s=>document.querySelector(s),q=v=>'"'+String(v).replace(/"/g,'""')+'"',MAX=3;
+const H=["Team Name"];for(let i=1;i<=10;i++)H.push("Member "+i+" Name","Member "+i+" ID","Member "+i+" Role");
+H.push("Chosen Idea","Custom Proposal Title","Proposal Description","Submission Date","Status","Notes");
+let CNT={},TM=[],last=null;const ok=!API.includes("PASTE");
+$("#th").innerHTML="<tr>"+H.map(h=>"<th>"+h+"</th>").join("")+"</tr>";
+const IDEAS=[...document.querySelectorAll("#ideas tbody tr td:nth-child(2) b")].map(b=>b.textContent);
+IDEAS.forEach(t=>{const o=document.createElement("option");o.value=o.textContent=t;$("#idea").appendChild(o)});
+const oo=document.createElement("option");oo.value=oo.textContent="Other - Propose a New Idea";$("#idea").appendChild(oo);
+function row(){const t=$("#mb"),tr=t.insertRow();tr.innerHTML="<td>"+t.rows.length+'</td><td><input class="n"></td><td><input class="d"></td><td><select class="r">'+ROLES.map(r=>"<option>"+r+"</option>").join("")+'</select></td><td><button type="button" class="s" onclick="this.closest(\'tr\').querySelectorAll(\'input\').forEach(i=>i.value=\'\')">Clear</button></td>'}
+function addM(){if($("#mb").rows.length<10)row();else $("#err").textContent="Maximum 10 members."}
+function remM(){if($("#mb").rows.length>7)$("#mb").deleteRow(-1);else $("#err").textContent="Minimum 7 members."}
+for(let i=0;i<7;i++)row();
+function tog(){$("#pw").hidden=!$("#idea").value.startsWith("Other")}
+function dl(n,t){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+t],{type:"text/csv;charset=utf-8"}));a.download=n;document.body.appendChild(a);a.click();a.remove()}
+function csv(l){return [H.map(q).join(",")].concat(l.map(s=>{const c=[s.team];for(let i=0;i<10;i++){const m=(s.members||[])[i]||["","",""];c.push(...m)}c.push(s.idea,s.ptitle||"",s.pdesc||"",s.date,s.status,"");return c.map(q).join(",")})).join("\r\n")}
+function paint(){IDEAS.forEach((t,i)=>{const n=CNT[t]||0,full=n>=MAX,o=$("#idea").options[i+1];
+o.textContent=t+(full?" - FULL (3/3)":" ("+n+"/3 teams)");o.disabled=full;
+const td=document.querySelector("#ideas tbody tr:nth-child("+(i+1)+") td:nth-child(2)");let b=td.querySelector(".cap");if(!b){b=document.createElement("span");td.appendChild(b)}
+b.className="cap"+(full?" full":"");b.textContent=full?"FULL - 3/3 teams":(MAX-n)+" of 3 spots left"})}
+function log(){const b=$("#log");b.innerHTML="";if(!TM.length){b.innerHTML="<tr><td colspan='5'>No submissions yet.</td></tr>";return}TM.forEach(s=>{const tr=b.insertRow();[s.team,s.members,s.idea,s.ptitle||"-",s.status].forEach(v=>{tr.insertCell().textContent=v})})}
+async function api(p,b){const r=await fetch(API+(p?"?"+p:""),b?{method:"POST",body:JSON.stringify(b)}:undefined);return r.json()}
+async function refresh(){try{const d=await api("action=status&t="+Date.now());if(d.ok){CNT=d.counts||{};TM=d.teams||[];paint();log();$("#st").textContent="Connected: spots left and the teams log refresh automatically for everyone."}}catch(e){$("#st").textContent="Cannot reach the shared sheet right now. Check your connection and refresh the page."}}
+paint();if(SHEET_URL)$("#dsh").hidden=false;
+if(ok){refresh();setInterval(refresh,20000)}else $("#st").textContent="Setup required: an instructor must paste the Apps Script Web App URL into this page (API constant) before teams can submit.";
+async function sub(e){e.preventDefault();const er=[],team=$("#tn").value.trim(),idea=$("#idea").value,other=idea.startsWith("Other");
+const members=[...$("#mb").rows].map(r=>[r.querySelector(".n").value.trim(),r.querySelector(".d").value.trim(),r.querySelector(".r").value]).filter(m=>m[0]||m[1]);
+if(!ok)er.push("Submission is not set up yet. Please contact the instructor.");
+if(!team)er.push("Team name is required.");
+if(!idea)er.push("Select an idea.");
+if(members.length<7||members.length>10)er.push("Enter 7 to 10 members (found "+members.length+").");
+if(members.some(m=>!m[0]||!m[1]))er.push("Every member needs a full name and a student ID.");
+if(new Set(members.map(m=>m[1].toLowerCase())).size!==members.length)er.push("Student IDs must be unique.");
+if(other&&(!$("#pt").value.trim()||!$("#pd").value.trim()))er.push("A proposal title and description are required for a new idea.");
+$("#err").textContent=er.join("\n");if(er.length)return false;
+const s={team,idea:other?"Other - Proposal":idea,ptitle:other?$("#pt").value.trim():"",pdesc:other?$("#pd").value.trim():"",members,date:new Date().toISOString().slice(0,10),status:"Pending"};
+const btn=$("#f button[type=submit]");btn.disabled=true;$("#err").textContent="Submitting...";
+try{const d=await api("",{action:"submit",...s});
+if(!d.ok){$("#err").textContent=d.error||"Submission failed.";refresh();return false}
+s.date=d.date||s.date;last=s;$("#err").textContent="Saved to the shared course sheet.";$("#f").reset();tog();refresh();dl("Team_Submissions.csv",csv([s]))
+}catch(x){$("#err").textContent="Could not reach the server. Please try again."}
+finally{btn.disabled=false}
+return false}
+function dlMine(){if(!last){alert("Submit your team first.");return}dl("Team_Submissions.csv",csv([last]))}
+async function dlInst(){if(!ok){alert("Setup required: add the Web App URL first.");return}const k=prompt("Instructor key:");if(!k)return;
+try{const d=await api("action=export&key="+encodeURIComponent(k));if(!d.ok){alert(d.error||"Access denied.");return}
+if(d.rows.length<2){alert("No submissions yet.");return}dl("All_Teams_Master.csv",d.rows.map(r=>r.map(q).join(",")).join("\r\n"))}catch(e){alert("Could not load submissions.")}}
+</script></body></html>
